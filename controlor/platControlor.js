@@ -7,9 +7,10 @@ module.exports ={
         const desc = req.body.desc
         const prix = req.body.prix
         try{
-            plats = await new PLATS[{
+            plats = new PLATS({
                 titre,desc,prix
-            }]
+            })
+        await plats.save()
         res.json(plats)
         }catch(error){
             console.log(error.message)
@@ -18,7 +19,7 @@ module.exports ={
 /**GET**/
     getPlat:async(req,res)=>{
     try{
-        const plats = await PLATS.find()
+        plats = await PLATS.find()
         res.json(plats)
     }catch(error){
         console.log(error.message)
