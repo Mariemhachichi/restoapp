@@ -16,4 +16,4 @@ const platSchema = new Schema({
 
 })
 
-module.exports = plats = mongoose.model('plats',platSchema)
+module.exports = plat = mongoose.model('plat',platSchema)

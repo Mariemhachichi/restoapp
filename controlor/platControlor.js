@@ -1,48 +1,52 @@
-const PLATS = require('../model/platModel')
+const Plat = require("../model/platModel");
 
 module.exports ={
 /**ADD**/
-    addPlat:async(req,res)=>{
-        const titre = req.body.titre
-        const desc = req.body.desc
-        const prix = req.body.prix
+    addPlat: async( req,res) => {
+        const titre = req.body.titre;
+        const desc = req.body.desc;
+        const prix = req.body.prix;
         try{
-            plats = new PLATS({
-                titre,desc,prix
-            })
-        await plats.save()
-        res.json(plats)
+           const plat = new Plat({
+                titre,
+                desc,
+                prix,
+            });
+            plat.save();
+        res.json(plat);
         }catch(error){
-            console.log(error.message)
+            console.error(error.message);
         }
     },
 /**GET**/
     getPlat:async(req,res)=>{
     try{
-        plats = await PLATS.find()
-        res.json(plats)
+        const plat = await Plat.find()
+        res.json(plat);
     }catch(error){
-        console.log(error.message)
+        console.error(error.message)
     }
 },
 /**DELETE**/
     deletePlat:async(req,res)=>{
     try{
-        const plats = await PLATS.findByIdAndDelete(req.params.id)
-        res.json(plats)
+        const plat = await Plat.findByIdAndDelete(req.params.id);
+        res.json(plat)
     }catch(error){
-        console.log(error.message)
+        console.error(error.message)
     }
     },
 /**UPDATE**/
     updatePlat:async(req,res)=>{
         try{
-            const plats = await PLATS.findByIdAndUpdate(req.params.id,req.body,{
-                new:true
-            })
-            res.json(plats)
+            const plat = await Plat.findByIdAndUpdate(
+                req.params.id,
+                req.body,
+                {new:true}
+                );
+            res.json(plat);
         }catch(error){
-            console.log(error.message)
+            console.error(error.message);
         }
-    }
-}
+    },
+};
